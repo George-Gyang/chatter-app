@@ -14,7 +14,7 @@ function SideBar() {
           <div className="side_content">
             <p className="fw-bold">Overview</p>
             <div className=" border-0">
-                <ul className="ps-3 ">
+                <ul className="ps-2 ">
               <Link to="#" className="list-group-item my-3">
                 <li>
                     <span className="me-2"><Icon icon="arcticons:ftxpro" width="30" /> </span>
