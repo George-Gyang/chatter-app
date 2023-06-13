@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import Post from "../components/Post";
+import "../App.css"
 
 function Feed() {
   return (
@@ -13,7 +14,7 @@ function Feed() {
               <p>Explore different content you’d love </p>
             </div>
             <div className="">
-              <button className="btn prime_bg text-light text-center">
+              <button className="btn prime_bg fs-xsm text-light text-center">
                 Post a content
               </button>
             </div>
