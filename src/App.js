@@ -10,17 +10,20 @@ import OtpCode from "./pages/OtpCode";
 import Landing from "./pages/Landing";
 import Analytics from "./pages/Analytics";
 import Feed from "./pages/Feed";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<SignUp />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/feed" element={<Feed />} />
+        </Route>
+        <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otp" element={<OtpCode />} />
         <Route path="/landing" element={<Landing />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/feed" element={<Feed />} />
       </Routes>
     </div>
   );

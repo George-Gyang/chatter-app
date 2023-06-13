@@ -13,7 +13,7 @@ function Feed() {
               <p>Explore different content you’d love </p>
             </div>
             <div className="">
-              <button className="btn prime_bg text-center">
+              <button className="btn prime_bg text-light text-center">
                 Post a content
               </button>
             </div>
@@ -24,6 +24,12 @@ function Feed() {
             <Link className="nav-link">Recent</Link>
           </div>
           <div className="container rounded border">
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
             <Post/>
           </div>
         </div>

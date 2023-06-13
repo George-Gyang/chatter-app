@@ -37,7 +37,7 @@ function SignUp() {
                     LOG IN
                   </Link>
                 </div>
-                <h5 className="fw-bold text-center mb-3">
+                <h5 className="fw-bold text-center my-3">
                   Register as a Writer/Reader
                 </h5>
                 <form className="row px-0 g-3">

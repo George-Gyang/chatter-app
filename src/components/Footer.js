@@ -12,7 +12,7 @@ function Footer() {
             </div>
           </div>
           <div className="col-6 col-md-3">
-            <h6 className="px-3">Explore</h6>
+            <h6 className="fw-bold">Explore</h6>
             <Link to="#" className="nav-link">
               Community
             </Link>
@@ -24,7 +24,7 @@ function Footer() {
             </Link>
           </div>
           <div className="col-6 col-md-3">
-            <h6 className="px-3">Support</h6>
+            <h6 className="fw-bold">Support</h6>
             <Link to="#" className="nav-link">
               Support docs
             </Link>
@@ -37,7 +37,7 @@ function Footer() {
           </div>
           <div className=" col-md-2 mt-4 mt-md-0">
             <div className="fit_footer mx-auto mx-md-0">
-              <h6 className="px-3">Official blog</h6>
+              <h6 className="fw-bold">Official blog</h6>
               <Link to="#" className="nav-link">
                 Official blog
               </Link>

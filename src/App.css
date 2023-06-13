@@ -7,7 +7,7 @@
 }
 
 .prime_bg {
-  background-color: #543ee0;
+  background-color: #543ee0 !important;
 }
 .prime_text {
   color: #543ee0;
@@ -27,7 +27,21 @@
 }
 
 .otp {
-  width: 50px;
+  max-width: 50px  !important;
+  margin: 0.2rem;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+}
+
+.side_content{
+  height:80vh;
+  /* padding-bottom: 2rem; */
+  overflow-y: scroll;
 }
 
 .fade_circle {

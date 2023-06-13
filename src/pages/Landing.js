@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // images
 import aboutImg from "../assets/about-img.png";
@@ -35,9 +35,11 @@ function Landing() {
                       Readers and Writers
                     </p>
                     <div className="my-3">
-                      <button className="btn prime_bg text-light">
-                        Get tarted
-                      </button>
+                      <Link to="/register">
+                        <button className="btn prime_bg text-light">
+                          Get tarted
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -95,7 +97,7 @@ function Landing() {
                   <div className="card-body">
                     <div className="fade_circle">
                       <span>
-                      <Icon icon="carbon:analytics" />
+                        <Icon icon="carbon:analytics" />
                       </span>
                     </div>
                     <h5 class="card-title mt-3 text-dark">Analytics</h5>
@@ -132,7 +134,8 @@ function Landing() {
                 >
                   <div className="card-body">
                     <div className="fade_circle">
-                      <span><Icon icon="entypo:news" />
+                      <span>
+                        <Icon icon="entypo:news" />
                       </span>
                     </div>
                     <h5 class="card-title mt-3 text-dark">Card title</h5>
@@ -170,9 +173,11 @@ function Landing() {
                   <span className="fw-bold">Adebobola Muhydeen, </span> Software
                   developer at Apple
                 </p>
-                <button className="btn prime_bg text-light">
-                  Join chatter
-                </button>
+                <Link to="/register">
+                  <button className="btn prime_bg text-light">
+                    Join chatter
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -217,12 +222,16 @@ function Landing() {
                   <span className="fw-bold">Adebobola Muhydeen, </span> Software
                   developer at Apple
                 </p>
-                <button className="btn prime_bg text-light">Get started</button>
+                <Link to="/register">
+                  <button className="btn prime_bg text-light">
+                    Get started
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );

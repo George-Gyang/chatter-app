@@ -26,7 +26,7 @@ function Post() {
           <h6>Starting out as a Product designer</h6>
           <p className="fs-xsm text-secondary">
             <span>
-              <Icon icon="entypo:news" height="15" />
+              <Icon icon="ant-design:read-outlined" width="15" />
             </span>{" "}
             10 mins read
           </p>
@@ -40,24 +40,24 @@ function Post() {
                 interact with the world around them.
               </p>
               <div className="img_container my-3">
-              <img src={postImg} alt="" className="img-fluid rounded" />
+                <img src={postImg} alt="" className="img-fluid rounded" />
               </div>
-              <div className="d-flex my-2 justify-content-between">
+              <div className="d-flex my-2 px-2 justify-content-between">
                 <div className="d-flex align-items-center ">
-                  <Link to="#">
-                    <Icon icon="entypo:news" height="20" />
-                  </Link>{" "}
+                  <Link className="nav-link" to="#">
+                  <Icon icon="et:chat" width="15" />
+                  </Link>
                   <span className="fs-xsm">200</span>
                 </div>
                 <div className="d-flex align-items-center ">
-                  <Link to="#">
-                    <Icon icon="entypo:news" height="20" />
-                  </Link>{" "}
+                  <Link className="nav-link" to="#">
+                  <Icon icon="icon-park-outline:like" width="15" />
+                  </Link>
                   <span className="fs-xsm">200</span>
                 </div>
                 <div className="d-flex align-items-center ">
-                  <Link to="#">
-                    <Icon icon="entypo:news" height="20" />
+                  <Link className="nav-link" to="#">
+                  <Icon icon="gridicons:stats-up" width="15" />
                   </Link>{" "}
                   <span className="fs-xsm">200</span>
                 </div>
