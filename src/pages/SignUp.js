@@ -18,7 +18,7 @@ function SignUp() {
 
   async function register(e) {
     e.preventDefault();
-    await fetch("http://localhost:4000/register", {
+    const response = await fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({
         firstName,
@@ -29,6 +29,10 @@ function SignUp() {
       }),
       headers: { "Content-Type": "application/json" },
     });
+
+    if (response.ok === false){
+      alert("registrartion fail")
+    }
   }
   return (
     <div>
@@ -62,75 +66,75 @@ function SignUp() {
                 </h5>
                 <form onSubmit={register} className="row px-0 g-3">
                   <div className="col-md-6">
-                    <label htmlFor="inputEmail4" className="form-label">
+                    <label htmlFor="firstName" className="form-label">
                       First Name
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="inputEmail4"
+                      id="firstName"
                       placeholder="John"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                   <div className="col-md-6">
-                    <label htmlFor="inputPassword4" className="form-label">
+                    <label htmlFor="lastName" className="form-label">
                       Last Name
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="inputPassword4"
+                      id="lastName"
                       value={lastName}
                       placeholder="Doe"
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                   <div className="col-12">
-                    <label htmlFor="inputState" className="form-label">
+                    <label htmlFor="userType" className="form-label">
                       You are joining as?
                     </label>
-                    <select id="inputState" className="form-select">
+                    <select id="userType" className="form-select">
                       <option>Writer</option>
                       <option>Reader</option>
                     </select>
                   </div>
                   <div className="col-12">
-                    <label htmlFor="inputAddress" className="form-label">
+                    <label htmlFor="userAddress" className="form-label">
                       Email Address
                     </label>
                     <input
                       type="email"
                       className="form-control"
-                      id="inputAddress"
+                      id="userAddress"
                       value={email}
                       placeholder="Johndoe@gmail.com"
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="col-12">
-                    <label htmlFor="inputAddress2" className="form-label">
+                    <label htmlFor="password" className="form-label">
                       Password
                     </label>
                     <input
                       type="password"
                       className="form-control"
-                      id="inputAddress2"
+                      id="password"
                       value={password}
                       placeholder="**********"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="col-12">
-                    <label htmlFor="inputCity" className="form-label">
+                    <label htmlFor="confirmPassword" className="form-label">
                       Confirm Password
                     </label>
                     <input
-                      type="text"
+                      type="password"
                       className="form-control"
                       placeholder="**********"
-                      id="inputCity"
+                      id="confirmPassword"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
