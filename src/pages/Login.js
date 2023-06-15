@@ -1,8 +1,29 @@
-import React from "react";
-import sideImg from '../assets/side-pics.png'
-import {Link} from 'react-router-dom'
+import React, { useState } from "react";
+import sideImg from "../assets/side-pics.png";
+import { Link } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async (e)=>{
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    // if (response.status !== 200){
+    //   alert("Incorrect email or password")
+    // }
+    // else{
+    //   alert(" Successful")
+    // }
+  }
   return (
     <div>
       <div className="">
@@ -23,10 +44,7 @@ function Login() {
             <div className="container py-5">
               <div className=" px-md-5">
                 <div className="d-flex justify-content-between">
-                  <Link
-                    className="nav-link fw-semibold text-dark"
-                    to="/"
-                  >
+                  <Link className="nav-link fw-semibold text-dark" to="/">
                     REGISTER
                   </Link>
                   <Link className="nav-link fw-semibold text-dark" to="/login">
@@ -34,7 +52,7 @@ function Login() {
                   </Link>
                 </div>
                 <h5 className="fw-bold text-center mb-3">Welcome back</h5>
-                <form className="row px-0 g-3">
+                <form className="row px-0 g-3" onSubmit={login}>
                   <div className="col-12">
                     <label for="inputAddress" className="form-label">
                       Email Address
@@ -44,6 +62,8 @@ function Login() {
                       className="form-control"
                       id="inputAddress"
                       placeholder="Johndoe@gmail.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="col-12">
@@ -55,6 +75,8 @@ function Login() {
                       className="form-control"
                       id="inputAddress2"
                       placeholder="**********"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="col-12">
@@ -71,7 +93,7 @@ function Login() {
                   <div className="d-grid gap-2">
                     <button
                       className="btn mt-2 prime_bg text-light"
-                      type="button"
+                      type="submit"
                     >
                       Login
                     </button>

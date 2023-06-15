@@ -7,9 +7,9 @@ import { Icon } from "@iconify/react";
 import "../App.css";
 
 function SignUp() {
+  const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   // const [address, setAddress] = useState('');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,17 +21,20 @@ function SignUp() {
     const response = await fetch("http://localhost:4000/register", {
       method: "POST",
       body: JSON.stringify({
+        email,
         firstName,
         lastName,
-        email,
         password,
         confirmPassword,
       }),
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok === false){
+    if (response.status !== 200){
       alert("registrartion fail")
+    }
+    else{
+      alert("registration Successful")
     }
   }
   return (
@@ -65,6 +68,19 @@ function SignUp() {
                   Register as a Writer/Reader
                 </h5>
                 <form onSubmit={register} className="row px-0 g-3">
+                  <div className="col-12">
+                    <label htmlFor="userAddress" className="form-label">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="userAddress"
+                      value={email}
+                      placeholder="Johndoe@gmail.com"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
                   <div className="col-md-6">
                     <label htmlFor="firstName" className="form-label">
                       First Name
@@ -99,19 +115,6 @@ function SignUp() {
                       <option>Writer</option>
                       <option>Reader</option>
                     </select>
-                  </div>
-                  <div className="col-12">
-                    <label htmlFor="userAddress" className="form-label">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="userAddress"
-                      value={email}
-                      placeholder="Johndoe@gmail.com"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
                   </div>
                   <div className="col-12">
                     <label htmlFor="password" className="form-label">
