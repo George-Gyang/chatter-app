@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import sideImg from "../assets/side-pics.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [redirect, setRedirect] = useState(false)
 
   const login = async (e)=>{
     e.preventDefault();
@@ -15,15 +17,21 @@ function Login() {
         password,
       }),
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
     });
 
-    // if (response.status !== 200){
-    //   alert("Incorrect email or password")
-    // }
-    // else{
-    //   alert(" Successful")
-    // }
+    if (response.ok){
+      setRedirect(true)
+    }
+    else{
+      alert(" Incorrect email or password")
+    }
   }
+
+  if (setRedirect){
+    return <Navigate to={"/"} />
+  }
+
   return (
     <div>
       <div className="">
@@ -54,7 +62,7 @@ function Login() {
                 <h5 className="fw-bold text-center mb-3">Welcome back</h5>
                 <form className="row px-0 g-3" onSubmit={login}>
                   <div className="col-12">
-                    <label for="inputAddress" className="form-label">
+                    <label htmlFor="inputAddress" className="form-label">
                       Email Address
                     </label>
                     <input
@@ -67,7 +75,7 @@ function Login() {
                     />
                   </div>
                   <div className="col-12">
-                    <label for="inputAddress2" className="form-label">
+                    <label htmlFor="inputAddress2" className="form-label">
                       Password
                     </label>
                     <input
@@ -80,7 +88,7 @@ function Login() {
                     />
                   </div>
                   <div className="col-12">
-                    <label for="inputCity" className="form-label">
+                    <label htmlFor="inputCity" className="form-label">
                       Confirm Password
                     </label>
                     <input

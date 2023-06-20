@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
 
+
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
+const [username, setUsername] = useState(null)
+
+  useEffect(() =>{
+    fetch('http://localhost:4000/profile', {
+      credentials : "include",
+    }).then(Response =>{
+      Response.json().then(userInfor =>{
+        setUsername(userInfor.username)
+      })
+    })
+  }, [])
+
   return (
     <div className="d-flex justify-content-around align-items-center">
       <div className="col-6">
