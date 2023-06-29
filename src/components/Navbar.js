@@ -3,21 +3,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
 
-
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-const [username, setUsername] = useState(null)
+  const [firstName, setFirstName] = useState(null);
 
-  useEffect(() =>{
-    fetch('http://localhost:4000/profile', {
-      credentials : "include",
-    }).then(Response =>{
-      Response.json().then(userInfor =>{
-        setUsername(userInfor.username)
-      })
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://localhost:4000/profile", {
+  //     credentials: "include",
+  //   })
+  //   .then((response) => {
+  //     response.json().then((userInfor) => {
+  //       setFirstName(userInfor.firstName);
+  //     });
+  //   });
+  // }, []);
 
   return (
     <div className="d-flex justify-content-around align-items-center">
@@ -43,9 +43,19 @@ const [username, setUsername] = useState(null)
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-            <Link to="/" className="nav-link">
-              <img src={writer2} alt="" className=" img-fluid rounded-circle" />
-            </Link>
+            {firstName && (
+                <Link to={"/create"}>create New Post</Link>
+            )}
+
+            {!firstName && (
+              <Link to="/" className="nav-link">
+                <img
+                  src={writer2}
+                  alt=""
+                  className=" img-fluid rounded-circle"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>
