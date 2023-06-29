@@ -1,6 +1,6 @@
 import React, {
   // useEffect,
-  useState,
+  // useState,
 } from "react";
 
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react/dist/iconify";
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-  const [firstName, setFirstName] = useState(null);
+  // const [firstName, setFirstName] = useState(null);
 
   // useEffect(() => {
   //   fetch("http://localhost:4000/profile", {
@@ -46,9 +46,9 @@ function Navbar() {
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-            {firstName && <Link to={"/create"}>create New Post</Link>}
+            {/* {firstName && <Link to={"/create"}>create New Post</Link>} */}
 
-            {!firstName && (
+
               <Link to="/" className="nav-link">
                 <img
                   src={writer2}
@@ -56,7 +56,6 @@ function Navbar() {
                   className=" img-fluid rounded-circle"
                 />
               </Link>
-            )}
           </div>
         </div>
       </div>
