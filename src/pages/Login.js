@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import sideImg from "../assets/side-pics.png";
 import { Link, Navigate } from "react-router-dom";
 
@@ -8,28 +8,28 @@ function Login() {
 
   const [redirect, setRedirect] = useState(false);
 
-  // const login = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch("http://localhost:4000/login", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       email,
-  //       password,
-  //     }),
-  //     headers: { "Content-Type": "application/json" },
-  //     credentials: "include",
-  //   });
+  const login = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
 
-  //   if (response.ok) {
-  //     setRedirect(true);
-  //   } else {
-  //     alert(" Incorrect email or password");
-  //   }
-  // };
+    if (response.ok) {
+      setRedirect(true);
+    } else {
+      alert(" Incorrect email or password");
+    }
+  };
 
-  // if (setRedirect) {
-  //   return <Navigate to={"/"} />;
-  // }
+  if (setRedirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div>
@@ -115,4 +115,4 @@ function Login() {
   );
 }
 
-// export default Login;
+export default Login;z
