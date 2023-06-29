@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  // useEffect,
+  useState,
+} from "react";
 
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
@@ -43,9 +46,7 @@ function Navbar() {
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-            {firstName && (
-                <Link to={"/create"}>create New Post</Link>
-            )}
+            {firstName && <Link to={"/create"}>create New Post</Link>}
 
             {!firstName && (
               <Link to="/" className="nav-link">
