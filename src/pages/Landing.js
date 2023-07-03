@@ -100,7 +100,7 @@ function Landing() {
                         <Icon icon="carbon:analytics" />
                       </span>
                     </div>
-                    <h5 class="card-title mt-3 text-dark">Analytics</h5>
+                    <h5 className="card-title mt-3 text-dark">Analytics</h5>
                     <p className="card-text">
                       Analytics to track the number of views, likes and comment
                       and also analyze the performance of your articles over a

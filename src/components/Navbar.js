@@ -6,18 +6,27 @@ import { Icon } from "@iconify/react/dist/iconify";
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-  const [firstName, setFirstName] = useState(null);
+  const [email, setFirstEmail] = useState(null);
+  const [accountEmail, setAccountEmail] = useState("")
 
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
-    })
-    // .then((response) => {
-    //   response.json().then((userInfor) => {
-    //     setFirstName(userInfor.firstName);
-    //   });
-    // });zzz
+    }).then((response) => {
+      response.json().then((userInfor) => {
+        setFirstEmail(userInfor.email);
+      });
+      // console.log(response)
+    });
   }, []);
+
+  function logOut(){
+    fetch("http://localhost:4000/logout", {
+      credentials: "include",
+      method: "POST"
+    });
+    setFirstEmail(null)
+  }
 
   return (
     <div className="d-flex justify-content-around align-items-center">
@@ -37,17 +46,21 @@ function Navbar() {
       </div>
       <div className="">
         <div className="d-flex align-items-center justify-content-end">
+          
+        {email && (
+              <>
+                <Link to={"/create"}>create New Post</Link>
+                <Link to={"/create"}>{accountEmail}</Link>
+              </>
+            )}
           <Link to="/" className="nav-link">
             <span>
               <Icon icon="zondicons:notification" />
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-            {firstName && (
-                <Link to={"/create"}>create New Post</Link>
-            )}
 
-            {!firstName && (
+            {!email && (
               <Link to="/" className="nav-link">
                 <img
                   src={writer2}
