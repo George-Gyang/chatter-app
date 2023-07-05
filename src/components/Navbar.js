@@ -2,30 +2,29 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
-
+import UserContext from "../UserContext";
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-  const [email, setFirstEmail] = useState(null);
-  const [accountEmail, setAccountEmail] = useState("")
-
+const {setUserDetails, userDetails} = UserContext(UserContext)
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
-      response.json().then((userInfor) => {
-        setFirstEmail(userInfor.email);
+      response.json().then((userDetails) => {
+        setUserDetails(userDetails);
+        console.log(userDetails.email);
       });
       // console.log(response)
     });
   }, []);
 
-  function logOut(){
+  function logOut() {
     fetch("http://localhost:4000/logout", {
       credentials: "include",
-      method: "POST"
+      method: "POST",
     });
-    setFirstEmail(null)
+    setUserDetails(null);
   }
 
   return (
@@ -46,28 +45,32 @@ function Navbar() {
       </div>
       <div className="">
         <div className="d-flex align-items-center justify-content-end">
-          
-        {email && (
-              <>
-                <Link to={"/create"}>create New Post</Link>
-                <Link to={"/create"}>{accountEmail}</Link>
-              </>
-            )}
+          {userEmail && (
+            <>
+              <Link to={"/create"}>create New Post</Link>
+              <button onClick={logOut} className="btn btn-primary btn-sm">
+                Log out
+              </button>
+            </>
+          )}
           <Link to="/" className="nav-link">
             <span>
               <Icon icon="zondicons:notification" />
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-
-            {!email && (
-              <Link to="/" className="nav-link">
-                <img
-                  src={writer2}
-                  alt=""
-                  className=" img-fluid rounded-circle"
-                />
-              </Link>
+            {!userEmail && (
+              <>
+                <Link to="/" className="nav-link">
+                  <img
+                    src={writer2}
+                    alt=""
+                    className=" img-fluid rounded-circle"
+                  />
+                </Link>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
             )}
           </div>
         </div>

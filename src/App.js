@@ -11,20 +11,23 @@ import Landing from "./pages/Landing";
 import Analytics from "./pages/Analytics";
 import Feed from "./pages/Feed";
 import Layout from "./components/Layout";
+import UserContextProvider from "./UserContext";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Analytics />} />
-          <Route path="/feed" element={<Feed />} />
-        </Route>
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/otp" element={<OtpCode />} />
-        <Route path="/landing" element={<Landing />} />
-      </Routes>
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Analytics />} />
+            <Route path="/feed" element={<Feed />} />
+          </Route>
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/otp" element={<OtpCode />} />
+          <Route path="/landing" element={<Landing />} />
+        </Routes>
+      </UserContextProvider>
     </div>
   );
 }
