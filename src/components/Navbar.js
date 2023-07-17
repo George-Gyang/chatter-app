@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
-import UserContext from "../UserContext";
+import { UserContext } from "../UserContext";
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-const {setUserDetails, userDetails} = UserContext(UserContext)
+  const { setUserInfo, userInfo } = useContext(UserContext);
+
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userDetails) => {
-        setUserDetails(userDetails);
-        console.log(userDetails.email);
+        // setUserEmail(userDetails.userEmail);
+        setUserInfo(userDetails);
+        // console.log(userDetails.email)
       });
-      // console.log(response)
     });
   }, []);
 
-  function logOut() {
+  function logout() {
     fetch("http://localhost:4000/logout", {
       credentials: "include",
       method: "POST",
     });
-    setUserDetails(null);
+    setUserInfo(null);
   }
+
+  const userEmail = userInfo?.email;
+  // console.log(userInfo.email);
 
   return (
     <div className="d-flex justify-content-around align-items-center">
@@ -48,7 +52,11 @@ const {setUserDetails, userDetails} = UserContext(UserContext)
           {userEmail && (
             <>
               <Link to={"/create"}>create New Post</Link>
-              <button onClick={logOut} className="btn btn-primary btn-sm">
+              <button
+                onClick={logout}
+                type="submit"
+                className="btn btn-primary btn-sm"
+              >
                 Log out
               </button>
             </>

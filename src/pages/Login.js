@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import sideImg from "../assets/side-pics.png";
 import { Link, Navigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [redirect, setRedirect] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
 
   const login = async (e) => {
     e.preventDefault();
@@ -15,21 +17,26 @@ function Login() {
       body: JSON.stringify({
         email,
         password,
+        // firstname,
       }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
 
     if (response.ok) {
-      setRedirect(true);
+      response.json().then((userDetails) => {
+        setUserInfo(userDetails);
+        setRedirect(true);
+      });
     } else {
       alert(" Incorrect email or password");
+      redirect(false);
     }
   };
 
   if (setRedirect) {
-    return <Navigate to={"/"} />;
-  }
+    return <Navigate to="/" />;
+  };
 
   return (
     <div>
