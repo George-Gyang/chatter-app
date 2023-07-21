@@ -56,7 +56,7 @@ function SignUp() {
             <div className="container py-2">
               <div className=" px-md-5">
                 <div className="d-flex justify-content-between">
-                  <Link className="nav-link fw-semibold text-dark" to="/">
+                  <Link className="nav-link fw-semibold text-dark" to="/register">
                     REGISTER
                   </Link>
                   <Link className="nav-link fw-semibold text-dark" to="/login">

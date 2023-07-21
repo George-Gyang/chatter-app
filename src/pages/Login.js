@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import sideImg from "../assets/side-pics.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,6 +13,7 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
+    console.log("testing")
     const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({
@@ -22,20 +24,16 @@ function Login() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-
     if (response.ok) {
       response.json().then((userDetails) => {
         setUserInfo(userDetails);
-        setRedirect(true);
+        // setRedirect(true);
+        navigate("/");
       });
     } else {
       alert(" Incorrect email or password");
       redirect(false);
     }
-  };
-
-  if (setRedirect) {
-    return <Navigate to="/" />;
   };
 
   return (

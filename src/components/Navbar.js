@@ -55,7 +55,7 @@ function Navbar() {
               <button
                 onClick={logout}
                 type="submit"
-                className="btn btn-primary btn-sm"
+                className="btn prime_bg btn-sm"
               >
                 Log out
               </button>
@@ -76,8 +76,8 @@ function Navbar() {
                     className=" img-fluid rounded-circle"
                   />
                 </Link>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link to="/login" className="prime_text">Login</Link>
+                <Link to="/register" className="prime_text">Register</Link>
               </>
             )}
           </div>
