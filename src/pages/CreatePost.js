@@ -40,17 +40,19 @@ const CreatePost = () => {
   const [comment, setComment] = useState("");
   const [files, setFiles] = useState("");
 
-  function createNewPost(e){
-    const data = new FormData()
-    data.set("title", title)
-    data.set("summary", summary)
-    data.set("files", files[0])
-    e.preventDefault()
-    console.log(data)
-    fetch("http://localhost:4000/post", {    
-          method: "POST",
-        body: data,
-    })
+  async function createNewPost(e) {
+    const data = new FormData();
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("file", files[0]);
+    data.set("comment", comment);
+    e.preventDefault();
+    console.log(data);
+    const response = await fetch("http://localhost:4000/post", {
+      method: "POST",
+      body: data,
+    });
+    response.json()
   }
 
   return (
@@ -58,7 +60,10 @@ const CreatePost = () => {
       <main>
         <h1 className="text-center my-5">Create Post Page</h1>
         <div>
-          <form onSubmit={createNewPost} className="row onSub g-3 needs-validation">
+          <form
+            onSubmit={createNewPost}
+            className="row onSub g-3 needs-validation"
+          >
             <div className="px-5">
               <div className="my-2">
                 <input
@@ -81,7 +86,12 @@ const CreatePost = () => {
                 />
               </div>
               <div className="my-2">
-                <input type="file" onChange={e => setFiles(e.target.files)} className="form-control" required />
+                <input
+                  type="file"
+                  onChange={(e) => setFiles(e.target.files)}
+                  className="form-control"
+                  required
+                />
               </div>
               <div className="text_ditor">
                 <ReactQuill
@@ -92,7 +102,7 @@ const CreatePost = () => {
                 />
               </div>
               <div className="my-2 d-grid">
-                <button className="btn prime_bg text-white">Publish</button>
+                <button className="btn prime_bg text-light">Publish</button>
               </div>
             </div>
           </form>

@@ -55,7 +55,7 @@ function Navbar() {
               <button
                 onClick={logout}
                 type="submit"
-                className="btn prime_bg btn-sm"
+                className="btn prime_bg text-white btn-sm"
               >
                 Log out
               </button>
