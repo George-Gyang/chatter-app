@@ -1,11 +1,21 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 
 // import writer3 from "../assets/writer3.png";
 import { Icon } from "@iconify/react/dist/iconify";
 import Post from "../components/Post";
 
 const Analytics = () => {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    fetch("http://localhost:4000/post").then((response) => {
+      response.json().then((postDetails) => {
+        setPosts(postDetails);
+        console.log(postDetails)
+      });
+    });
+  }, []);
+
   return (
     <div className="">
       <div className="container">
@@ -32,7 +42,10 @@ const Analytics = () => {
             </span>{" "}
             10 mins read
           </p>
-          <Post />
+          {posts.length > 0 &&  posts.map(post =>(
+            <Post key={post.id} {...post} />
+          ))
+          }
           <button className="btn prime_bg py-2 my-4 fs-xsm text-light">
             View post activity
           </button>

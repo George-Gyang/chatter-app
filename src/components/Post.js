@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import writer3 from "../assets/writer3.png";
 import postImg from "../assets/post-img.png";
 import { Icon } from "@iconify/react/dist/iconify";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Post() {
   return (
@@ -45,19 +45,19 @@ function Post() {
               <div className="d-flex my-2 px-2 justify-content-between">
                 <div className="d-flex align-items-center ">
                   <Link className="nav-link" to="#">
-                  <Icon icon="et:chat" width="15" />
+                    <Icon icon="et:chat" width="15" />
                   </Link>
                   <span className="fs-xsm">200</span>
                 </div>
                 <div className="d-flex align-items-center ">
                   <Link className="nav-link" to="#">
-                  <Icon icon="icon-park-outline:like" width="15" />
+                    <Icon icon="icon-park-outline:like" width="15" />
                   </Link>
                   <span className="fs-xsm">200</span>
                 </div>
                 <div className="d-flex align-items-center ">
                   <Link className="nav-link" to="#">
-                  <Icon icon="gridicons:stats-up" width="15" />
+                    <Icon icon="gridicons:stats-up" width="15" />
                   </Link>{" "}
                   <span className="fs-xsm">200</span>
                 </div>

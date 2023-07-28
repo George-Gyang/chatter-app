@@ -13,7 +13,6 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
-    console.log("testing");
     const response = await fetch("http://localhost:4000/login", {
       method: "POST",
       body: JSON.stringify({
