@@ -11,7 +11,7 @@ const Analytics = () => {
     fetch("http://localhost:4000/post").then((response) => {
       response.json().then((postDetails) => {
         setPosts(postDetails);
-        console.log(postDetails)
+        // console.log(postDetails)
       });
     });
   }, []);
@@ -43,7 +43,7 @@ const Analytics = () => {
             10 mins read
           </p>
           {posts.length > 0 &&  posts.map(post =>(
-            <Post key={post.id} {...post} />
+            <Post key={post._id} {...post} />
           ))
           }
           <button className="btn prime_bg py-2 my-4 fs-xsm text-light">

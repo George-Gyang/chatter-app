@@ -1,19 +1,32 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect} from "react";
+import { useParams, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import writer3 from "../assets/writer3.png";
-import postImg from "../assets/post-img.png";
-import { Icon } from "@iconify/react/dist/iconify";
+import format from "date-fns/format";
 
-import { Link, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
+const PostDetails = ()=>{
+    const [viewPost, setViewPost] = useState(null)
+    const {id} = useParams();
+    useEffect(() => {
+      fetch(`http://localhost:4000/post/${id}`).then((response) => {
+        response.json().then((postDetail) => {
+          setViewPost(postDetail);
+          console.log(setViewPost)
+        });
+      });
+    }, []);
 
-function Post({ _id, title, summary, file, comment, createdAt, author }) {
-  return (
+    if (!viewPost) return "";
+    return(
+        <div>
+            <h1 className="text-primary">Thi is our show page</h1>
+            
     <div>
       <div className="post p-3">
         <div className="col-md-6">
           <div className="row align-items-center">
             <div className="col-3">
-              <Link to={`/post/${_id}`}>
+              <Link to="">
                 <img
                   src={writer3}
                   alt=""
@@ -23,19 +36,19 @@ function Post({ _id, title, summary, file, comment, createdAt, author }) {
             </div>
             <div className="col-8">
               <p className="fw-semibold text-dark text-uppercase">
-                {author.lastName}
+                {viewPost.author.lastName}
               </p>
               <p className="text-secondary text-dark">
-                <Link className="nav-link" to={`/post/${_id}`}>
-                  <span className="fs-3 fw-bold">{title}</span>.
+                <Link className="nav-link" to="">
+                  <span className="fs-3 fw-bold">{viewPost.title}</span>.
                 </Link>
-                {format(new Date(createdAt), "MMM d, yyyy HH:mm")}
+                {format(new Date(viewPost.createdAt), "MMM d, yyyy HH:mm")}
               </p>
             </div>
           </div>
         </div>
         <div className="chatter_content my-3">
-          <h6>{summary}</h6>
+          <h6>{viewPost.summary}</h6>
           <p className="fs-xsm text-secondary">
             <span>
               <Icon icon="ant-design:read-outlined" width="15" />
@@ -45,14 +58,10 @@ function Post({ _id, title, summary, file, comment, createdAt, author }) {
           <article className="my-3">
             <div className="col-md-8">
               <p className="text-dark">
-                <div dangerouslySetInnerHTML={{ __html: comment }} />
-              </p>
+                <div dangerouslySetInnerHTML={{ __html:viewPost.comment}} />
+                </p>
               <div className="img_container my-3">
-                <img
-                  src={"http://localhost:4000/" + file}
-                  alt=""
-                  className="img-fluid rounded"
-                />
+                <img src={`http://localhost:4000/${viewPost.file}`} alt="" className="img-fluid rounded" />
               </div>
               <div className="d-flex my-2 px-2 justify-content-between">
                 <div className="d-flex align-items-center ">
@@ -79,7 +88,8 @@ function Post({ _id, title, summary, file, comment, createdAt, author }) {
         </div>
       </div>
     </div>
-  );
+        </div>
+    )
 }
 
-export default Post;
+export default PostDetails;

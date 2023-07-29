@@ -13,6 +13,7 @@ import Feed from "./pages/Feed";
 import Layout from "./components/Layout";
 import UserContextProvider from "./UserContext";
 import CreatePost from "./pages/CreatePost";
+import PostDetails from "./pages/PostDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route index element={<Analytics />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/create" element={<CreatePost />} />
+            <Route path="/post/:id" element={<PostDetails />} />
           </Route>
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
