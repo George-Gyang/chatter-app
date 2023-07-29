@@ -8,7 +8,7 @@ import { format } from "date-fns";
 
 function Post({ _id, title, summary, file, comment, createdAt, author }) {
   return (
-    <div>
+    <div className="card">
       <div className="post p-3">
         <div className="col-md-6">
           <div className="row align-items-center">
@@ -22,8 +22,8 @@ function Post({ _id, title, summary, file, comment, createdAt, author }) {
               </Link>
             </div>
             <div className="col-8">
-              <p className="fw-semibold text-dark text-uppercase">
-                {author.lastName}
+              <p className="">
+               posted by: <span className="fw-semibold text-dark text-uppercase"> {author.lastName}</span>
               </p>
               <p className="text-secondary text-dark">
                 <Link className="nav-link" to={`/post/${_id}`}>
@@ -45,15 +45,15 @@ function Post({ _id, title, summary, file, comment, createdAt, author }) {
           <article className="my-3">
             <div className="col-md-8">
               <p className="text-dark">
-                <div dangerouslySetInnerHTML={{ __html: comment }} />
+                {/* <div dangerouslySetInnerHTML={{ __html: comment }} /> */}
               </p>
-              <div className="img_container my-3">
+              {/* <div className="img_container my-3">
                 <img
                   src={"http://localhost:4000/" + file}
                   alt=""
                   className="img-fluid rounded"
                 />
-              </div>
+              </div> */}
               <div className="d-flex my-2 px-2 justify-content-between">
                 <div className="d-flex align-items-center ">
                   <Link className="nav-link" to="#">

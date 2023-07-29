@@ -14,6 +14,7 @@ import Layout from "./components/Layout";
 import UserContextProvider from "./UserContext";
 import CreatePost from "./pages/CreatePost";
 import PostDetails from "./pages/PostDetails";
+import EditPage from "./pages/EditPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/feed" element={<Feed />} />
             <Route path="/create" element={<CreatePost />} />
             <Route path="/post/:id" element={<PostDetails />} />
+            <Route path="/edit/:id" element={<EditPage />} />
           </Route>
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

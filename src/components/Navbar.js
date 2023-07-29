@@ -29,7 +29,7 @@ function Navbar() {
   }
 
   const userEmail = userInfo?.email;
-  // console.log(userInfo.email);
+  // console.log(userInfo);
 
   return (
     <div className="d-flex justify-content-around align-items-center">
@@ -51,11 +51,12 @@ function Navbar() {
         <div className="d-flex align-items-center justify-content-end">
           {userEmail && (
             <>
-              <Link to={"/create"}>create New Post</Link>
+            {/* <span> Hello, {userInfo.email}</span> */}
+              <Link  className="btn prime_bg py-2 fs-xsm text-light" to={"/create"}>Publish</Link>
               <button
                 onClick={logout}
                 type="submit"
-                className="btn prime_bg text-white btn-sm"
+                className="btn ms-2 btn-danger text-white fs-xsm py-2 text-nowrap"
               >
                 Log out
               </button>
