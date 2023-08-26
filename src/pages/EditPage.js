@@ -50,6 +50,7 @@ function EditPage() {
     });
   }, []);
 
+
   async function updatePost(e) {
     e.preventDefault();
     const data = new FormData();

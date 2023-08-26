@@ -8,7 +8,7 @@ import { format } from "date-fns";
 
 function Post({ _id, title, summary, file, comment, createdAt, author }) {
   return (
-    <div className="card">
+    <div className="card my-3">
       <div className="post p-3">
         <div className="col-md-6">
           <div className="row align-items-center">
