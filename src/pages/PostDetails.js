@@ -7,7 +7,7 @@ import { UserContext } from "../UserContext";
 
 const PostDetails = () => {
   const [viewPost, setViewPost] = useState(null);
-  const [redirect, setredirect] = useState(false);
+  const [redirectDelete, setredirectDelete] = useState(false);
 
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
@@ -22,17 +22,18 @@ const PostDetails = () => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:4000/post/${id}`, {
+    const response = await fetch("http://localhost:4000/post/"+id, {
       method: "DELETE",
       credentials: "include",
     });
     
     if (response.ok) {
-      setredirect(true);
+      setredirectDelete(true);
+      console.log("deleted ingo successful!!!")
     }
   };
-  if (redirect) {
-    return <Navigate to={"/post"} />;
+  if (redirectDelete) {
+    return <Navigate to={"/"} />
   }
 
   if (!viewPost) return "";
@@ -70,15 +71,14 @@ const PostDetails = () => {
                           Edit Post
                         </Link>
                       </p>
-                      <p>
+                      <form onSubmit={handleDelete}>
                         <button
                           type="submit"
                           className="nav-link bg-danger btn p-1 fs-xsm text-light"
-                          onClick={handleDelete}
                         >
                           Delete Post
                         </button>
-                      </p>
+                      </form>
                     </>
                   )}
                 </div>
