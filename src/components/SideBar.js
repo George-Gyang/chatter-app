@@ -9,7 +9,9 @@ function SideBar() {
       <div className="sidebar col-2 m-0 border-end p-1 p-md-4">
         <div className="">
           <div className="my-3">
+            <Link to={"/"} className="nav-link">
             <h1 className="text-center fs-md-1 logo prime_text">CHATTER</h1>
+            </Link>
           </div>
           <div className="side_content">
             <p className="fw-bold">Overview</p>
