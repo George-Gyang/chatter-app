@@ -1,26 +1,35 @@
-import React, {
-  // useEffect,
-  // useState,
-} from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
-
+import { UserContext } from "../UserContext";
 import writer2 from "../assets/writer2.png";
 
 function Navbar() {
-  // const [firstName, setFirstName] = useState(null);
+  const { setUserInfo, userInfo } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:4000/profile", {
-  //     credentials: "include",
-  //   })
-  //   .then((response) => {
-  //     response.json().then((userInfor) => {
-  //       setFirstName(userInfor.firstName);
-  //     });
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:4000/profile", {
+      credentials: "include",
+    }).then((response) => {
+      response.json().then((userDetails) => {
+        // setUserEmail(userDetails.userEmail);
+        setUserInfo(userDetails);
+        // console.log(userDetails.email)
+      });
+    });
+  }, []);
+
+  function logout() {
+    fetch("http://localhost:4000/logout", {
+      credentials: "include",
+      method: "POST",
+    });
+    setUserInfo(null);
+  }
+
+  const userEmail = userInfo?.email;
+  // console.log(userInfo);
 
   return (
     <div className="d-flex justify-content-around align-items-center">
@@ -40,22 +49,38 @@ function Navbar() {
       </div>
       <div className="">
         <div className="d-flex align-items-center justify-content-end">
+          {userEmail && (
+            <>
+            {/* <span> Hello, {userInfo.email}</span> */}
+              <Link  className="btn prime_bg py-2 fs-xsm text-light" to={"/create"}>Publish</Link>
+              <button
+                onClick={logout}
+                type="submit"
+                className="btn ms-2 btn-danger text-white fs-xsm py-2 text-nowrap"
+              >
+                Log out
+              </button>
+            </>
+          )}
           <Link to="/" className="nav-link">
             <span>
               <Icon icon="zondicons:notification" />
             </span>
           </Link>
           <div className="col-2 ms-3 col-md-0 avatar">
-            {/* {firstName && <Link to={"/create"}>create New Post</Link>} */}
-
-
-              <Link to="/" className="nav-link">
-                <img
-                  src={writer2}
-                  alt=""
-                  className=" img-fluid rounded-circle"
-                />
-              </Link>
+            {!userEmail && (
+              <>
+                <Link to="/" className="nav-link">
+                  <img
+                    src={writer2}
+                    alt=""
+                    className=" img-fluid rounded-circle"
+                  />
+                </Link>
+                <Link to="/login" className="prime_text">Login</Link>
+                <Link to="/register" className="prime_text">Register</Link>
+              </>
+            )}
           </div>
         </div>
       </div>

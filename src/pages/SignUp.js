@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import sideImg from "../assets/side-pics.png";
@@ -16,26 +16,26 @@ function SignUp() {
 
   // register submission
 
-  // async function register(e) {
-  //   e.preventDefault();
-  //   const response = await fetch("http://localhost:4000/register", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       firstName,
-  //       lastName,
-  //       email,
-  //       password,
-  //       confirmPassword,
-  //     }),
-  //     headers: { "Content-Type": "application/json" },
-  //   });
+  async function register(e) {
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/register", {
+      method: "POST",
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-  //   if (response.status !== 200) {
-  //     alert("registrartion fail");
-  //   } else {
-  //     alert("registration Successful");
-  //   }
-  // }
+    if (response.status !== 200) {
+      alert("registrartion fail");
+    } else {
+      alert("registration Successful");
+    }
+  }
   return (
     <div>
       <div className="">
@@ -56,7 +56,7 @@ function SignUp() {
             <div className="container py-2">
               <div className=" px-md-5">
                 <div className="d-flex justify-content-between">
-                  <Link className="nav-link fw-semibold text-dark" to="/">
+                  <Link className="nav-link fw-semibold text-dark" to="/register">
                     REGISTER
                   </Link>
                   <Link className="nav-link fw-semibold text-dark" to="/login">
@@ -179,4 +179,4 @@ function SignUp() {
   );
 }
 
-// export default SignUp;
+export default SignUp;
