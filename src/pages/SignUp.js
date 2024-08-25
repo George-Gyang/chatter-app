@@ -5,12 +5,13 @@ import sideImg from "../assets/side-pics.png";
 import { Icon } from "@iconify/react";
 
 import "../App.css";
+import { BASE_URL } from "../utils/base";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  // const [address, setAddress] = useState('');
+  const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -18,12 +19,13 @@ function SignUp() {
 
   async function register(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch(`${BASE_URL}/register`, {
       method: "POST",
       body: JSON.stringify({
         firstName,
         lastName,
         email,
+        role,
         password,
         confirmPassword,
       }),
@@ -36,6 +38,8 @@ function SignUp() {
       alert("registration Successful");
     }
   }
+
+  console.log(role)
   return (
     <div>
       <div className="">
@@ -110,9 +114,10 @@ function SignUp() {
                     <label htmlFor="userType" className="form-label">
                       You are joining as?
                     </label>
-                    <select id="userType" className="form-select">
-                      <option>Writer</option>
-                      <option>Reader</option>
+                    <select id="userType" value={role} onChange={(e) => setRole(e.target.value)} className="form-select">
+                      <option value={""}>-- Select --</option>
+                      <option value={"writer"}>Writer</option>
+                      <option value={"reader"}>Reader</option>
                     </select>
                   </div>
                   <div className="col-12">

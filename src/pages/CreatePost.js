@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
+import { BASE_URL } from "../utils/base";
 
 const modules = {
   toolbar: [
@@ -50,7 +51,7 @@ const CreatePost = () => {
     data.set("comment", comment);
     e.preventDefault();
     console.log(data);
-    const response = await fetch("http://localhost:4000/post", {
+    const response = await fetch(`${BASE_URL}/post`, {
       method: "POST",
       body: data,
       credentials: "include",

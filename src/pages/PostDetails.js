@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import writer3 from "../assets/writer3.png";
 import format from "date-fns/format";
 import { UserContext } from "../UserContext";
+import ImageView from "../components/ImageView";
+import { BASE_URL } from "../utils/base";
 
 const PostDetails = () => {
   const [viewPost, setViewPost] = useState(null);
   const [redirectDelete, setredirectDelete] = useState(false);
+  const navigate = useNavigate();
 
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(`${BASE_URL}/post/${id}`).then((response) => {
       response.json().then((postDetail) => {
         setViewPost(postDetail);
         // console.log(setViewPost);
@@ -22,11 +25,11 @@ const PostDetails = () => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/post/"+id, {
+    const response = await fetch(`${BASE_URL}/post${id}`, {
       method: "DELETE",
       credentials: "include",
     });
-    
+
     if (response.ok) {
       setredirectDelete(true);
       console.log("deleted ingo successful!!!")
@@ -36,10 +39,19 @@ const PostDetails = () => {
     return <Navigate to={"/"} />
   }
 
+  console.log(viewPost)
+
   if (!viewPost) return "";
   return (
     <div>
       <div>
+        <div className="position-fixed top-50 end-0 pe-4">
+          <button
+            onClick={() => navigate("/")}
+            className="btn btn-sm btn-outline-info">
+            BACK
+          </button>
+        </div>
         <div className="post p-3">
           <div className="col-md-6">
             <div className="row align-items-center">
@@ -102,11 +114,12 @@ const PostDetails = () => {
             <article className="my-3">
               <div className="col-md-8">
                 <div className="img_container my-3">
-                  <img
+                  {/* <img
                     src={`http://localhost:4000/${viewPost.file}`}
                     alt=""
                     className="img-fluid rounded"
-                  />
+                  /> */}
+                  <ImageView file={viewPost.file} />
                 </div>
                 <div className="text-dark">
                   <p dangerouslySetInnerHTML={{ __html: viewPost.comment }} />

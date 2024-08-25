@@ -15,6 +15,7 @@ import UserContextProvider from "./UserContext";
 import CreatePost from "./pages/CreatePost";
 import PostDetails from "./pages/PostDetails";
 import EditPage from "./pages/EditPage";
+import AllUsers from "./pages/AllUsers";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Analytics />} />
             <Route path="/feed" element={<Feed />} />
+            <Route path="/all_users" element={<AllUsers />} />
             <Route path="/create" element={<CreatePost />} />
             <Route path="/post/:id" element={<PostDetails />} />
             <Route path="/edit/:id" element={<EditPage />} />

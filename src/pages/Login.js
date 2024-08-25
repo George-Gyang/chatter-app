@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import sideImg from "../assets/side-pics.png";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { BASE_URL } from "../utils/base";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/login", {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       body: JSON.stringify({
         email,

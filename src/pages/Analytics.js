@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 // import writer3 from "../assets/writer3.png";
 import { Icon } from "@iconify/react/dist/iconify";
 import Post from "../components/Post";
+import { BASE_URL } from "../utils/base";
 
 const Analytics = () => {
   const [posts, setPosts] = useState([])
   useEffect(() => {
-    fetch("http://localhost:4000/post").then((response) => {
+    fetch(`${BASE_URL}/post`).then((response) => {
       response.json().then((postDetails) => {
         setPosts(postDetails);
         // console.log(postDetails)
