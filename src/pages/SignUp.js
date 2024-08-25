@@ -5,6 +5,7 @@ import sideImg from "../assets/side-pics.png";
 import { Icon } from "@iconify/react";
 
 import "../App.css";
+import { BASE_URL } from "../utils/base";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -18,7 +19,7 @@ function SignUp() {
 
   async function register(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch(`${BASE_URL}/register`, {
       method: "POST",
       body: JSON.stringify({
         firstName,

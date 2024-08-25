@@ -5,6 +5,7 @@ import writer3 from "../assets/writer3.png";
 import format from "date-fns/format";
 import { UserContext } from "../UserContext";
 import ImageView from "../components/ImageView";
+import { BASE_URL } from "../utils/base";
 
 const PostDetails = () => {
   const [viewPost, setViewPost] = useState(null);
@@ -14,7 +15,7 @@ const PostDetails = () => {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(`${BASE_URL}/post/${id}`).then((response) => {
       response.json().then((postDetail) => {
         setViewPost(postDetail);
         // console.log(setViewPost);
@@ -24,7 +25,7 @@ const PostDetails = () => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/post/" + id, {
+    const response = await fetch(`${BASE_URL}/post${id}`, {
       method: "DELETE",
       credentials: "include",
     });

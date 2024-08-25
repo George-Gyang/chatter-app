@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Navigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../utils/base";
 
 const modules = {
   toolbar: [
@@ -41,7 +42,7 @@ function EditPage() {
   const [redirect, setredirect] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:4000/post/"+id).then((response) => {
+    fetch(`${BASE_URL}/post/${id}`).then((response) => {
       response.json().then((prevPost) => {
         setTitle(prevPost.title);
         setSummary(prevPost.summary);
@@ -62,7 +63,7 @@ function EditPage() {
         data.set("file", files?.[0]);
     }
     console.log(data);
-    const response = await fetch("http://localhost:4000/post", {
+    const response = await fetch(`${BASE_URL}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",

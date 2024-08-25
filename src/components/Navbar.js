@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify";
 import { UserContext } from "../UserContext";
 import writer2 from "../assets/writer2.png";
+import { BASE_URL } from "../utils/base";
 
 function Navbar() {
   const { setUserInfo, userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
+    fetch(`${BASE_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userDetails) => {
@@ -21,7 +22,7 @@ function Navbar() {
   }, []);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${BASE_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });
